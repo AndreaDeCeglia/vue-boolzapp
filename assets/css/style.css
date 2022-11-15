@@ -16,9 +16,22 @@
     width: 30%;
 }
 
-#myProfile{
+#mainChat{
+    width: 70%;
+}
+
+#chatArea{
+    height: 84%;
+    background-image: url('./../img/mine.jpg');
+}
+
+#myProfile,
+#interlocutor,
+#type,
+.chat-container{
     background-color: #eaeaea;
     height: 8%;
+    width: 100%;
 }
 
 .profile-name-image{
@@ -31,7 +44,7 @@
 }
 
 .profile-name{
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .profile-tool-icon{
@@ -64,7 +77,10 @@
 
 #chatSearching{
     background-color: #fafafa;
-    height: 5%;
+}
+
+#searchbar{
+    width: 90%;
 }
 
 .chat-preview{
@@ -75,4 +91,8 @@
 .user-avatar{
     height: 80%;
     border-radius: 50%;
+}
+
+.message-input-bar{
+    width: 80%;
 }
