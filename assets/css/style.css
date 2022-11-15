@@ -1,0 +1,78 @@
+#root{
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(180deg, #159688 15%, #d6dbd7 15%);
+}
+
+#webappContainer{
+    background-color: white;
+    width: 85%;
+    height: 95%;
+}
+
+#sidebar{
+    background-color: lightseagreen;
+    height: 100%;
+    width: 30%;
+}
+
+#myProfile{
+    background-color: #eaeaea;
+    height: 8%;
+}
+
+.profile-name-image{
+    height: 100%;
+}
+
+.profile-pic{
+    border-radius: 50%;
+    height: 80%;
+}
+
+.profile-name{
+    font-weight: 700;
+}
+
+.profile-tool-icon{
+    color: #b1b1b1;
+}
+
+#notifications{
+    background-color: #91dbfb;
+    height: 10%;
+}
+
+.notifications-background{
+    background-color: white;
+    height: 80%;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+}
+
+.bell{
+    color: #91dbfb;
+}
+
+.activation-desktop{
+    color: #637ea5
+}
+
+.activation-desktop:hover{
+    color: #b1b1b1;
+}
+
+#chatSearching{
+    background-color: #fafafa;
+    height: 5%;
+}
+
+.chat-preview{
+    background-color: white;
+    height: 20%;
+}
+
+.user-avatar{
+    height: 80%;
+    border-radius: 50%;
+}

@@ -35,20 +35,93 @@
     <!-- ********************** #root div // Vue workfield ************************** -->
     <div id="root" class="d-flex justify-content-center align-items-center">
         
-        <!-- ********* WebApp container ********** -->
+        <!-- ************** WebApp container *************** -->
         <div id="webappContainer" class="d-flex">
             
-            <!-- ******** SideBar ******* -->
+            <!-- ************* SideBar ************ -->
             <div id="sidebar" class="d-flex flex-column">
 
-            </div>
-            <!-- ** SideBar // Closure ** -->
+                <!-- my profile - upper in sidebar -->
+                <div id="myProfile" class="d-flex justify-content-between align-items-center">
 
-            <!-- ******* Main Chat ******** -->
-            <div id="mainChat">
-                
+                    <!-- myProfile image and Name -->
+                    <div class="profile-name-image d-flex align-items-center">
+                        <img class="profile-pic mx-2" src="./assets/img/avatar_io.jpg" alt="myAvatar">
+                        <span class="profile-name ms-2"> /\NDR€/\ </span>
+                    </div>
+
+                    <!-- myProfile tools icons -->
+                    <div class="profile-tools d-flex align-items-center justify-content-between">
+                        <i class="profile-tool-icon fs-4 mx-2 bi bi-arrow-clockwise"></i>
+                        <i class="profile-tool-icon fs-4 mx-2 bi bi-chat-left-fill"></i>
+                        <i class="profile-tool-icon fs-4 mx-2 bi bi-three-dots-vertical"></i>
+                    </div>
+
+                </div>
+                <!-- my profile upper // Closure -->
+
+
+                <!-- notifications activating -->
+                <div id="notifications" class="d-flex justify-content-start align-items-center">
+
+                    <!-- bell section -->
+                    <div class="notifications-background d-flex align-items-center justify-content-center mx-2">
+                        <i class="bell fs-4 bi bi-bell-slash-fill"></i>
+                    </div>
+
+                    <!-- activating section -->
+                    <div>
+                        <span >Ricevi notifiche di nuovi messaggi</span>
+                        <a class="activation-desktop d-block">Attiva notifiche desktop</a>
+                    </div>
+
+                </div>
+                <!-- notification // Closure -->
+
+
+                <!-- Chat Searching bar -->
+                <div id="chatSearching"></div>
+                <!-- ChatSearching // Closure -->
+
+
+                <!-- Chats - downer in sidebar -->
+                <div id="chats">
+
+                    <div class="chat-preview d-flex align-items-center">
+
+                        <img class="user-avatar mx-2" src="img/avatar_1.jpg" alt="">
+
+                        <div class="last-message">
+
+                        </div>
+
+                        
+
+                    </div>
+
+                </div>
+                <!-- Chats Downer // Closure -->
+
             </div>
-            <!-- ** Main Chat // Closure ** -->
+            <!-- ******* SideBar // Closure ******* -->
+
+            <!-- ************ Main Chat ************* -->
+            <div id="mainChat" class="d-flex flex-column">
+
+                <!-- interlocutor section - upper in Main-->
+                <div id="interlocutor" class="d-flex justify-content-between align-items-center"></div>
+                <!-- interlocutor upper // Closure -->
+
+                <!-- Chat Area - central in Main -->
+                <div id="chatArea"></div>
+                <!-- Chat Area Central // Closure -->
+
+                <!-- Type Area - Downer in Main -->
+                <div id="type" class="d-flex justify-content-between align-items-center"></div>
+                <!-- Type Area Downer // Closure -->
+
+            </div>
+            <!-- ******* Main Chat // Closure ******* -->
         
         </div>
         <!-- **** WebApp container // Closure **** -->
