@@ -100,3 +100,36 @@
 .message-input-bar{
     width: 80%;
 }
+
+/* CHAT SECTION */
+
+.chatContainer{
+
+    width: 100%;
+    height: 90%;
+}
+    
+.msg-text{
+        font-size: 0.8rem;
+}
+    
+.msg-hour{
+        text-align:right;
+        font-size: 0.5rem;
+}
+    
+.white-msg,.green-msg{
+      margin-top: 10px;  
+      width: 250px;
+      padding: 8px;
+      border-radius: 8px;   
+}
+    
+.white-msg{
+       background-color: white;
+}
+
+.green-msg{
+        background-color:rgb(213, 249, 186);
+}
+    
