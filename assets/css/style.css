@@ -34,6 +34,10 @@
     width: 100%;
 }
 
+#chats{
+    padding-inline-start: 0;
+}
+
 .profile-name-image{
     height: 100%;
 }
