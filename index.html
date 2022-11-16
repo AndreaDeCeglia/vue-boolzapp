@@ -181,7 +181,13 @@
                     
                     <span class="type-icon fs-4 mx-2"><i class="bi bi-emoji-smile"></i></span>
     
-                    <input class="message-input-bar" type="text" placeholder="  Scrivi un messaggio">
+                    <input
+                    v-model="inputMessage"
+                    @keyup.enter="insertMessage()" 
+                    class="message-input-bar" 
+                    type="text" 
+                    placeholder="Scrivi un messaggio"
+                    >
 
                     <span class="message-tool-icon fs-4 mx-2"><i class="bi bi-mic-fill"></i></span>
 

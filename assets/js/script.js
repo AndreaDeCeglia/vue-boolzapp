@@ -13,7 +13,8 @@ var app = new Vue (
            //utilizz. var che cambia in base all'index inizializzata a zero
 
            dinamicIndex: 0,
-           dinamicClass: 'chat-container',
+           //dinamicClass: 'chat-container',
+           inputMessage: '',
 
            //inset dinamicIndex nella formula dell'astrazione dell'array messagges
            //contacts[dinamicIndex].messagges => array
@@ -220,7 +221,17 @@ var app = new Vue (
                 let date = element.date;
                 let time = date.slice(10,16);
                 return time;
-            }
+            },
+
+            insertMessage(){
+                
+                let obj = {
+                    date: '10/01/2020 15:51:00',
+                    message: this.inputMessage,
+                    status: 'sent'
+                }
+                return this.contacts[this.dinamicIndex].messages.push(obj);
+            },
 
         },
     }
