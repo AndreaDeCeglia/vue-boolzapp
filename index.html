@@ -82,16 +82,19 @@
                 <!-- Chat Searching bar -->
                 <div id="chatSearching" class="d-flex p-2">
 
-                    <!-- searchbar TO PUT -->
+                    <!-- searchbar TO FIX -->
                     <button class="input-group-text px-3 " id="inputGroup-sizing-sm">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
+                    <!-- input text for filtering the contacts -->
                     <input
                         type="text"
                         placeholder="Cerca o inizia una nuova chat"
                         class="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-sm"
+                        v-on:keyup="searchName()"
+                        v-model="nameSearch"
                     />
 
                 </div>

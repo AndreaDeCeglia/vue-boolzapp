@@ -15,6 +15,7 @@ var app = new Vue (
            dinamicIndex: 0,
            //dinamicClass: 'chat-container',
            inputMessage: '',
+           nameSearch: '',
 
            //inset dinamicIndex nella formula dell'astrazione dell'array messagges
            //contacts[dinamicIndex].messagges => array
@@ -224,16 +225,19 @@ var app = new Vue (
             },
 
             insertMessage(){
-                
-                let obj = {
-                    date: '10/01/2020 15:51:00',
-                    message: this.inputMessage,
-                    status: 'sent'
+
+                if( this.inputMessage == ''){
+
+                } else {
+                    let obj = {
+                        date: '10/01/2020 15:51:00',
+                        message: this.inputMessage,
+                        status: 'sent'
+                    }
+                    this.inputMessage = '';
+                    setTimeout( this.selfAnswer, 1000);
+                    return this.contacts[this.dinamicIndex].messages.push(obj);
                 }
-
-                setTimeout( this.selfAnswer, 1000);
-
-                return this.contacts[this.dinamicIndex].messages.push(obj);
             },
 
 
@@ -245,6 +249,24 @@ var app = new Vue (
                 }
                 return this.contacts[this.dinamicIndex].messages.push(obj);
             },
+
+            searchName() {
+                this.contacts.forEach((element, index) => {
+                  if (this.nameSearch == "") {
+                    this.contacts[index].visible = true;
+                  } else {
+                    if (
+                      element.name.includes(this.nameSearch) ||
+                      element.name.toLowerCase().includes(this.nameSearch) ||
+                      element.name.toUpperCase().includes(this.nameSearch)
+                    ) {
+                      element.visible = true;
+                    } else {
+                      element.visible = false;
+                    }
+                  }
+                });
+              },
 
         },
     }
