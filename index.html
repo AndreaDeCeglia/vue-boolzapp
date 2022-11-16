@@ -93,7 +93,7 @@
                         class="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-sm"
-                        v-on:keyup="searchName()"
+                        v-on:keyup="filterName()"
                         v-model="nameSearch"
                     />
 
@@ -106,7 +106,9 @@
                     
 
                     <!-- single chat container self generated -->
-                    <li v-for="(element, index) in contacts" 
+                    <li
+                     
+                    v-for="(element, index) in contacts" 
                     class="list-group-item chat-container d-flex justify-content-between align-items-start"
                     @click="selectChat(index, element)">
 
@@ -141,14 +143,17 @@
                      <!-- interlocutor's dinamics image and Name -->
                      <div class="profile-name-image d-flex align-items-center">
                         <img 
-                        class="profile-pic mx-2" 
+                        class="profile-pic" 
                         :src="`./assets/img/avatar${contacts[dinamicIndex].avatar}.jpg`" 
                         alt="dinamicAvatar">
                         <div>
                             <span class="profile-name ms-2"> 
                                 {{ contacts[dinamicIndex].name }} 
                             </span>
-                            <div class="last-mex"> ultimo messaggio </div>
+                            <div class="last-mex">
+                                ultimo accesso 
+                                {{ getTimeOfLastMessage(contacts[dinamicIndex]) }} 
+                            </div>
                         </div>
                         <div></div>
                     </div>

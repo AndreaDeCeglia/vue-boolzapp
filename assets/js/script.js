@@ -250,22 +250,17 @@ var app = new Vue (
                 return this.contacts[this.dinamicIndex].messages.push(obj);
             },
 
-            searchName() {
+            filterName() {
                 this.contacts.forEach((element, index) => {
-                  if (this.nameSearch == "") {
-                    this.contacts[index].visible = true;
-                  } else {
-                    if (
-                      element.name.includes(this.nameSearch) ||
-                      element.name.toLowerCase().includes(this.nameSearch) ||
-                      element.name.toUpperCase().includes(this.nameSearch)
-                    ) {
-                      element.visible = true;
-                    } else {
-                      element.visible = false;
+
+                    if(this.contacts.name.includes(this.nameSearch)){
+                        return element.visible = true;
+                    }else{
+                        return element.visible = false;
                     }
-                  }
-                });
+    
+                    
+                })
               },
 
         },
