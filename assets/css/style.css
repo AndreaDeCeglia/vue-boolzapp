@@ -33,9 +33,15 @@
     width: 100%;
 }
 
-.chat-container{
+.chat-focus{
     background-color: #eaeaea;
-    height: 10%;
+    height: 15%;
+    width: 100%;
+}
+
+.chat-container{
+    background-color: white;
+    height: 15%;
     width: 100%;
 }
 

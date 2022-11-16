@@ -113,13 +113,13 @@
                             alt="myAvatar">
                             <div>
                                 <span class="profile-name"> {{ element.name }} </span>
-                                <div class="last-mex"> ultimo messaggio </div>
+                                <div class="last-mex"> {{ getLastMessageData(element, index).message }} </div>
                             </div>
                             
                         </div>
 
                         <div class="last-message-time mx-2">
-                            hour 
+                            {{ getTimeOfLastMessage(element, index) }} 
                         </div>
 
                     </li>
@@ -169,7 +169,7 @@
                         :class="(element.status == 'received') ? 'white-msg align-self-start' : 'green-msg align-self-end'"
                         >
                             <span> {{ element.message }} </span>
-                            <span class="msg-hour"> {{ element.date }} </span>
+                            <span class="msg-hour"> {{ getCurrentTime(element, dinamicIndex) }} </span>
                         </div>
                         
                     </div>

@@ -13,6 +13,7 @@ var app = new Vue (
            //utilizz. var che cambia in base all'index inizializzata a zero
 
            dinamicIndex: 0,
+           dinamicClass: 'chat-container',
 
            //inset dinamicIndex nella formula dell'astrazione dell'array messagges
            //contacts[dinamicIndex].messagges => array
@@ -193,6 +194,33 @@ var app = new Vue (
                 console.log(`you're selecting this element`, index);
                 return this.dinamicIndex = index;
             },
+
+            getLastMessageData(element, index){
+                let archive = element.messages;
+                let indexOfLastMessage = archive.length - 1
+
+                console.log(archive[indexOfLastMessage].message);
+                console.log(indexOfLastMessage);
+                console.log(archive);
+ 
+                return archive[indexOfLastMessage];
+            },
+
+            getTimeOfLastMessage(element, index){
+                let archive = element.messages;
+                let indexOfLastMessage = archive.length - 1;
+
+                let date = archive[indexOfLastMessage].date;
+                let time = date.slice(10,16);
+
+                return time;
+            },
+
+            getCurrentTime(element, index){
+                let date = element.date;
+                let time = date.slice(10,16);
+                return time;
+            }
 
         },
     }
