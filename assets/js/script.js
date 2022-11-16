@@ -230,6 +230,19 @@ var app = new Vue (
                     message: this.inputMessage,
                     status: 'sent'
                 }
+
+                setTimeout( this.selfAnswer, 1000);
+
+                return this.contacts[this.dinamicIndex].messages.push(obj);
+            },
+
+
+            selfAnswer(){
+                let obj = {
+                    date: '10/01/2020 15:51:00',
+                    message: 'ok',
+                    status: 'received'
+                }
                 return this.contacts[this.dinamicIndex].messages.push(obj);
             },
 
