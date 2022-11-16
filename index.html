@@ -72,7 +72,7 @@
                     <!-- activating section -->
                     <div id="notificationsActivation">
                         <span >Ricevi notifiche di nuovi messaggi</span>
-                        <a class="activation-desktop d-block">Attiva notifiche desktop</a>
+                        <a href="#" class="activation-desktop d-block">Attiva notifiche desktop</a>
                     </div>
 
                 </div>
@@ -99,41 +99,27 @@
 
 
                 <!-- Chats - downer in sidebar -->
-                <ul id="chats">
+                <ul id="chats" class="list-group list-group-flush">
                     
 
                     <!-- single chat container self generated -->
-                    <li class="chat-container d-flex justify-content-between align-items-start">
+                    <li v-for="(element, index) in contacts" 
+                    class="list-group-item chat-container d-flex justify-content-between align-items-start"
+                    @click="selectChat(index, element)">
 
                         <div class="profile-name-image d-flex align-items-center">
-                            <img class="profile-pic mx-2" src="./assets/img/avatar_io.jpg" alt="myAvatar">
+                            <img class="profile-pic mx-2" 
+                            :src=" './assets/img/avatar' + element.avatar + '.jpg' " 
+                            alt="myAvatar">
                             <div>
-                                <span class="profile-name ms-2"> {{ input }} </span>
+                                <span class="profile-name"> {{ element.name }} </span>
                                 <div class="last-mex"> ultimo messaggio </div>
                             </div>
                             
                         </div>
 
                         <div class="last-message-time mx-2">
-                            {{ hour }}
-                        </div> 
-
-                    </li>
-
-                    <!-- single chat container self generated -->
-                    <li class="chat-container d-flex justify-content-between align-items-start">
-
-                        <div class="profile-name-image d-flex align-items-center">
-                            <img class="profile-pic mx-2" src="./assets/img/avatar_io.jpg" alt="myAvatar">
-                            <div>
-                                <span class="profile-name ms-2"> {{ input }} </span>
-                                <div class="last-mex"> ultimo messaggio </div>
-                            </div>
-                            
-                        </div>
-
-                        <div class="last-message-time mx-2">
-                            {{ hour }}
+                            hour 
                         </div>
 
                     </li>
@@ -149,11 +135,16 @@
 
                 <!-- interlocutor section - upper in Main-->
                 <div id="interlocutor" class="d-flex justify-content-between align-items-center">
-                     <!-- myProfile image and Name -->
+                     <!-- interlocutor's dinamics image and Name -->
                      <div class="profile-name-image d-flex align-items-center">
-                        <img class="profile-pic mx-2" src="./assets/img/avatar_io.jpg" alt="myAvatar">
+                        <img 
+                        class="profile-pic mx-2" 
+                        :src="`./assets/img/avatar${contacts[dinamicIndex].avatar}.jpg`" 
+                        alt="dinamicAvatar">
                         <div>
-                            <span class="profile-name ms-2"> {{ input }} </span>
+                            <span class="profile-name ms-2"> 
+                                {{ contacts[dinamicIndex].name }} 
+                            </span>
                             <div class="last-mex"> ultimo messaggio </div>
                         </div>
                         <div></div>
@@ -171,28 +162,16 @@
                 <!-- Chat Area - central in Main -->
                 <div id="chatArea" class="right-main d-flex align-items-end">
                     
-                    <div class="chatContainer d-flex justify-content-around">
-                        
-                        <!-- white-msg -->
-                        <div>
-                            <div class="white-msg d-flex align-items-end justify-content-between">
-                                <span class="msg-text">Tutto fatto sto layout ????</span>
-                                <span class="msg-hour ">10.15</span>
-                            </div>
+                    <div class="chatContainer d-flex flex-column px-5">
+
+                        <div 
+                        v-for="(element, index) in contacts[dinamicIndex].messages" 
+                        :class="(element.status == 'received') ? 'white-msg align-self-start' : 'green-msg align-self-end'"
+                        >
+                            <span> {{ element.message }} </span>
+                            <span class="msg-hour"> {{ element.date }} </span>
                         </div>
                         
-                        <!-- green-msg -->
-                        <div>
-                            <div class="green-msg d-flex align-items-end justify-content-between">
-                                <span class="msg-text"> ce se prova ... </span>
-                                <span class="msg-hour ">15.30</span>
-                            </div>
-                            <div class="green-msg d-flex align-items-end justify-content-between">
-                                <span class="msg-text"> ... mo penso a javascript </span>
-                                <span class="msg-hour ">15.50</span>
-                            </div>
- 
-                        </div>
                     </div>
                 </div>
                 <!-- Chat Area Central // Closure -->

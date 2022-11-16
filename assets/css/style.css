@@ -27,15 +27,21 @@
 
 #myProfile,
 #interlocutor,
-#type,
-.chat-container{
+#type{
     background-color: #eaeaea;
     height: 8%;
     width: 100%;
 }
 
+.chat-container{
+    background-color: #eaeaea;
+    height: 10%;
+    width: 100%;
+}
+
 #chats{
     padding-inline-start: 0;
+    overflow: auto;
 }
 
 .profile-name-image{
@@ -107,6 +113,7 @@
 
     width: 100%;
     height: 90%;
+    overflow: auto;
 }
     
 .msg-text{
@@ -119,10 +126,11 @@
 }
     
 .white-msg,.green-msg{
-      margin-top: 10px;  
-      width: 250px;
+      margin-top: 5px;  
+      /* width: 250px; */
+      max-width: 40%;
       padding: 8px;
-      border-radius: 8px;   
+      border-radius: 10px;   
 }
     
 .white-msg{
