@@ -65,12 +65,12 @@
                 <div id="notifications" class="d-flex justify-content-start align-items-center">
 
                     <!-- bell section -->
-                    <div class="notifications-background d-flex align-items-center justify-content-center mx-2">
+                    <div class="notifications-background d-flex align-items-center justify-content-center mx-2 text-center">
                         <i class="bell fs-4 bi bi-bell-slash-fill"></i>
                     </div>
 
                     <!-- activating section -->
-                    <div id="notificationsActivation">
+                    <div id="notificationsActivation" class="d-none d-lg-block">
                         <span >Ricevi notifiche di nuovi messaggi</span>
                         <a href="#" class="activation-desktop d-block">Attiva notifiche desktop</a>
                     </div>
@@ -148,12 +148,12 @@
                             <!-- dinamic Name&Last Msg kept and printed -->
                             <div>
                                 <span class="profile-name"> {{ element.name }} </span>
-                                <div class="last-mex"> {{ getLastMessageData(element, index).message }} </div>
+                                <div class="last-mex d-none d-lg-block"> {{ getLastMessageData(element, index).message }} </div>
                             </div>
                             
                         </div>
                         <!-- last message's time kept and printed -->
-                        <div class="last-message-time mx-2">
+                        <div class="last-message-time mx-2 d-none d-lg-block">
                             {{ getTimeOfLastMessage(element, index) }} 
                         </div>
 
