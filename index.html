@@ -9,7 +9,7 @@
     <!-- Font Awesome Link -->
     <link
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
     />
@@ -83,13 +83,13 @@
                 <div id="chatSearching" class="d-flex p-2">
 
                     <!-- searchbar TO FIX -->
-                    <button class="input-group-text px-3 " id="inputGroup-sizing-sm">
+                    <!-- <button class="input-group-text px-3 " id="inputGroup-sizing-sm">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    </button> -->
                     <!-- input text for filtering the contacts //
                     :keyup => usefull for triggering the function releasing the key
                     depending on the Value kept by v-model-->
-                    <input
+                    <!-- <input
                         type="text"
                         placeholder="Cerca o inizia una nuova chat"
                         class="form-control"
@@ -97,7 +97,34 @@
                         aria-describedby="inputGroup-sizing-sm"
                         :keyup="filterName()"
                         v-model="nameSearch"
-                    />
+                    /> -->
+
+                    <form class="d-flex align-items-center w-100">
+                        <div class="input-group input-group-sm search-group">
+                            
+                            <button 
+                            class="btn bg-white p-0" 
+                            onclick="return false" 
+                            type="submit" 
+                            @click="filterName()"
+                            >
+                                <span class="input-group-text border-0 bg-white px-2" id="inputGroup-sizing-sm">
+                                    <i class="fa-solid fa-magnifying-glass px-1 text-grey"></i>
+                                </span>
+                            </button>
+                            
+                            <input 
+                            type="text" 
+                            placeholder="Cerca contatto" 
+                            class="form-control border-0" 
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-sm" 
+                            v-on:keyup="filterName()" 
+                            v-model="nameSearch"
+                            >
+      
+                        </div>
+                     </form>
 
                 </div>
                 <!-- ********** ChatSearching // Closure *************** -->
@@ -165,11 +192,21 @@
                             </span>
                             <!-- dinamic kept lastMessage's hour //
                             TO DO "TYPING STATE DURING THE TEMPORIZED FUNCTION" -->
-                            <div class="last-mex">
-                                {{ lastAccess }}
+                            <div 
+                            class="last-mex" 
+                            v-if="offline"
+                            >
+                                {{contacts[dinamicIndex].messages[contacts[dinamicIndex].messages.length -1].date}}
                                 <!-- ultimo accesso 
                                 {{ getTimeOfLastMessage(contacts[dinamicIndex]) }}  -->
                             </div>
+
+                            <div
+                            v-else
+                            >
+                                {{ lastAccess }}
+                            </div>
+                          
                         </div>
                         <div></div>
                     </div>

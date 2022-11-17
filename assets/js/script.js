@@ -3,7 +3,7 @@ var app = new Vue (
         el: '#root',
         data: {
 
-
+            //obj's datas
            imgPath: '../assets/img/avatar',
            imgPathext: '.jpg',
 
@@ -17,7 +17,7 @@ var app = new Vue (
            inputMessage: '',
            nameSearch: '',
            lastAccess: '',
-           
+           offline: true,
 
            //inset dinamicIndex nella formula dell'astrazione dell'array messagges
            //contacts[dinamicIndex].messagges => array
@@ -197,19 +197,15 @@ var app = new Vue (
             selectChat: function(index, element){
                 console.log(`you're selecting this element`, index);
                 this.dinamicIndex = index;
-                this.lastAccess = getTimeOfLastMessage();
+                this.lastAccess = getTimeOfLastMessage(contacts[index]);
                 return this.lastAccess
             },
 
             getLastMessageData(element, index){
-                let archive = element.messages;
-                let indexOfLastMessage = archive.length - 1
 
-                console.log(archive[indexOfLastMessage].message);
-                console.log(indexOfLastMessage);
-                console.log(archive);
+        
  
-                return archive[indexOfLastMessage];
+                return element.messages[element.messages.length - 1];
             },
 
             getTimeOfLastMessage(element, index){
@@ -248,12 +244,13 @@ var app = new Vue (
                         message: this.inputMessage,
                         status: 'sent'
                     }
-                    setTimeout(() => this.lastAccess = 'Online', 1000);
+                    this.offline = false
+                    setTimeout(() => this.lastAccess = 'Online', 0000);
                     setTimeout(() => this.lastAccess = 'Sta scrivendo...', 2000);
                     this.inputMessage = '';
                     setTimeout( this.selfAnswer, 3000);
-                    setTimeout(() => this.lastAccess = 'Online', 2500);
-                    setTimeout(() => this.lastAccess = `ultimo accesso ${currentMoment}`, 3000);
+                    setTimeout(() => this.lastAccess = 'Online', 5000);
+                    setTimeout(() => this.lastAccess = `ultimo accesso ${currentMoment}`, 6000);
                     return this.contacts[this.dinamicIndex].messages.push(obj);
                 }
             },
