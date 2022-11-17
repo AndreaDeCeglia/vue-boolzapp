@@ -18,6 +18,7 @@ var app = new Vue (
            nameSearch: '',
            lastAccess: '',
            offline: true,
+           selected: false,
 
            //inset dinamicIndex nella formula dell'astrazione dell'array messagges
            //contacts[dinamicIndex].messagges => array
@@ -196,6 +197,7 @@ var app = new Vue (
 
             selectChat: function(index, element){
                 console.log(`you're selecting this element`, index);
+                this.selected = true;
                 this.dinamicIndex = index;
                 this.lastAccess = getTimeOfLastMessage(contacts[index]);
                 return this.lastAccess
@@ -249,7 +251,7 @@ var app = new Vue (
                     setTimeout(() => this.lastAccess = 'Sta scrivendo...', 2000);
                     this.inputMessage = '';
                     setTimeout( this.selfAnswer, 3000);
-                    setTimeout(() => this.lastAccess = 'Online', 5000);
+                    setTimeout(() => this.lastAccess = 'Online', 6000);
                     setTimeout(() => this.lastAccess = `ultimo accesso ${currentMoment}`, 6000);
                     return this.contacts[this.dinamicIndex].messages.push(obj);
                 }
@@ -288,6 +290,15 @@ var app = new Vue (
                     
                 })
               },
+
+            deleteMessage(parametro, index){
+                if(parametro.length < 1){
+                    parametro.splice(0,1);
+                }
+                parametro.splice(index, 1);
+
+                console.log(`this is parametro`, parametro)
+            },
 
         },
     }

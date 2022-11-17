@@ -83,21 +83,10 @@
                 <div id="chatSearching" class="d-flex p-2">
 
                     <!-- searchbar TO FIX -->
-                    <!-- <button class="input-group-text px-3 " id="inputGroup-sizing-sm">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button> -->
+                    
                     <!-- input text for filtering the contacts //
                     :keyup => usefull for triggering the function releasing the key
                     depending on the Value kept by v-model-->
-                    <!-- <input
-                        type="text"
-                        placeholder="Cerca o inizia una nuova chat"
-                        class="form-control"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm"
-                        :keyup="filterName()"
-                        v-model="nameSearch"
-                    /> -->
 
                     <form class="d-flex align-items-center w-100">
                         <div class="input-group input-group-sm search-group">
@@ -124,7 +113,7 @@
                             >
       
                         </div>
-                     </form>
+                    </form>
 
                 </div>
                 <!-- ********** ChatSearching // Closure *************** -->
@@ -141,11 +130,15 @@
                     <li
                     v-if="element.visible"
                     v-for="(element, index) in contacts" 
-                    class="list-group-item chat-container d-flex justify-content-between align-items-start"
+                    class="list-group-item d-flex justify-content-between align-items-start"
+                    :class="(selected == 'true') ? 'chat-focus' : 'chat-container' "
                     @click="selectChat(index, element)"
                     >
                         <!-- Single dinamic printed Chat container -->
-                        <div class="profile-name-image d-flex align-items-center">
+                        <div 
+                        class="profile-name-image d-flex align-items-center"
+                        
+                        >
                             <!-- dinamic kept profile's image -->
                             <img 
                             class="profile-pic mx-2" 
@@ -179,7 +172,7 @@
                 <div id="interlocutor" class="d-flex justify-content-between align-items-center">
                      <!-- interlocutor's dinamics image and Name,
                     selected by selectChat() -->
-                     <div class="profile-name-image d-flex align-items-center">
+                    <div class="profile-name-image d-flex align-items-center">
                         <img 
                         class="profile-pic" 
                         :src="`./assets/img/avatar${contacts[dinamicIndex].avatar}.jpg`" 
@@ -238,19 +231,67 @@
                             <!-- proper message's hour -->
                             <span class="msg-hour"> 
                                 {{ getCurrentTime(element, dinamicIndex) }} 
-                            
                             </span>
-                        </div>
+                            <!-- arrow and dropdown for handling the proper message -->
+                            <div class="mx-2 d-flex flex-column">
+                                <div class="dropdown">
+                                     <!--arrow chevron down with dropdown  -->
+                                    <span class="message-options d-block text-end" 
+                                    type="button" 
+                                    data-bs-toggle="dropdown" 
+                                    aria-expanded="false"
+                                    >
+                                        <i class=" bi bi-chevron-down"></i>
+                                    </span>
+                                    <!-- the actual dropdown -->
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                Rispondi
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                Inoltra messaggio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                Messaggio importante
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                Segnala
+                                            </a>
+                                        </li>
+                                        <!-- messages deletting's command -->
+                                        <li>
+                                            <a 
+                                            @click="deleteMessage(contacts[dinamicIndex].messages, index)" 
+                                            class="dropdown-item" 
+                                            href="#"
+                                            >
+                                                Elimina messaggio
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--  -->
+                            </div>
                         <!-- single cicled and targeted message's container // Closure -->
-                    </div>
+                        </div>
                 
+                    </div>
                 </div>
                 <!-- ************** Chat Area Central // Closure *********************** -->
 
                 <!-- **************** Type Area - Downer in Main *********************** -->
                 <div id="type" class="d-flex justify-content-around align-items-center">
                     
-                    <span class="type-icon fs-4 mx-2"><i class="bi bi-emoji-smile"></i></span>
+                    <span class="type-icon fs-4 mx-2">
+                        <i class="bi bi-emoji-smile"></i>
+                    </span>
                     
                     <!-- inputText for typing your messages //
                     @keypu.enter lets you do that pushing the enterKey -->
@@ -262,7 +303,9 @@
                     placeholder="Scrivi un messaggio"
                     >
                     <!-- TO ADD THE BUTTON FOR SENDING THE MESSAGE CLICKING -->
-                    <span class="message-tool-icon fs-4 mx-2"><i class="bi bi-mic-fill"></i></span>
+                    <span class="message-tool-icon fs-4 mx-2">
+                        <i class="bi bi-mic-fill"></i>
+                    </span>
 
                 </div>
                 <!-- ************** Type Area Downer // Closure ************* -->
