@@ -41,7 +41,7 @@
             <!-- ************* SideBar ************ -->
             <div id="sidebar" class="d-flex flex-column">
 
-                <!-- my profile - upper in sidebar -->
+                <!-- ******** my profile - upper in sidebar ********** -->
                 <div id="myProfile" class="d-flex justify-content-between align-items-center">
 
                     <!-- myProfile image and Name -->
@@ -58,10 +58,10 @@
                     </div>
 
                 </div>
-                <!-- my profile upper // Closure -->
+                <!-- ******** my profile upper // Closure ********** -->
 
 
-                <!-- notifications activating -->
+                <!-- ******** notifications activating ********  -->
                 <div id="notifications" class="d-flex justify-content-start align-items-center">
 
                     <!-- bell section -->
@@ -76,53 +76,63 @@
                     </div>
 
                 </div>
-                <!-- notification // Closure -->
+                <!-- ******** notification // Closure  ******** -->
 
 
-                <!-- Chat Searching bar -->
+                <!-- ********** Chat Searching bar *************** -->
                 <div id="chatSearching" class="d-flex p-2">
 
                     <!-- searchbar TO FIX -->
                     <button class="input-group-text px-3 " id="inputGroup-sizing-sm">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <!-- input text for filtering the contacts -->
+                    <!-- input text for filtering the contacts //
+                    :keyup => usefull for triggering the function releasing the key
+                    depending on the Value kept by v-model-->
                     <input
                         type="text"
                         placeholder="Cerca o inizia una nuova chat"
                         class="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-sm"
-                        v-on:keyup="filterName()"
+                        :keyup="filterName()"
                         v-model="nameSearch"
                     />
 
                 </div>
-                <!-- ChatSearching // Closure -->
+                <!-- ********** ChatSearching // Closure *************** -->
 
 
-                <!-- Chats - downer in sidebar -->
+                <!-- *************** Chats - downer in sidebar ************ -->
                 <ul id="chats" class="list-group list-group-flush">
                     
-
-                    <!-- single chat container self generated -->
+                    <!-- single chat container self generated //
+                    filterName() handles element.visible that if it's true,
+                    the array will be cicled and
+                    the single profile will be printed on the list //
+                    instead, selectChat() => handles what chat will be showen on main chat-->
                     <li
-                     v-if="element.visible"
+                    v-if="element.visible"
                     v-for="(element, index) in contacts" 
                     class="list-group-item chat-container d-flex justify-content-between align-items-start"
-                    @click="selectChat(index, element)">
-
+                    @click="selectChat(index, element)"
+                    >
+                        <!-- Single dinamic printed Chat container -->
                         <div class="profile-name-image d-flex align-items-center">
-                            <img class="profile-pic mx-2" 
+                            <!-- dinamic kept profile's image -->
+                            <img 
+                            class="profile-pic mx-2" 
                             :src=" './assets/img/avatar' + element.avatar + '.jpg' " 
-                            alt="myAvatar">
+                            alt="myAvatar"
+                            >
+                            <!-- dinamic Name&Last Msg kept and printed -->
                             <div>
                                 <span class="profile-name"> {{ element.name }} </span>
                                 <div class="last-mex"> {{ getLastMessageData(element, index).message }} </div>
                             </div>
                             
                         </div>
-
+                        <!-- last message's time kept and printed -->
                         <div class="last-message-time mx-2">
                             {{ getTimeOfLastMessage(element, index) }} 
                         </div>
@@ -130,29 +140,35 @@
                     </li>
 
                 </ul>
-                <!-- Chats Downer // Closure -->
+                <!-- ****************** Chats Downer // Closure ******************** -->
 
             </div>
-            <!-- ******* SideBar // Closure ******* -->
+            <!-- *********************** SideBar // Closure ************************* -->
 
-            <!-- ************ Main Chat ************* -->
+            <!-- ************************ Main Chat ************************* -->
             <div id="mainChat" class="d-flex flex-column">
 
-                <!-- interlocutor section - upper in Main-->
+                <!-- ******* interlocutor section - upper in Main *****-->
                 <div id="interlocutor" class="d-flex justify-content-between align-items-center">
-                     <!-- interlocutor's dinamics image and Name -->
+                     <!-- interlocutor's dinamics image and Name,
+                    selected by selectChat() -->
                      <div class="profile-name-image d-flex align-items-center">
                         <img 
                         class="profile-pic" 
                         :src="`./assets/img/avatar${contacts[dinamicIndex].avatar}.jpg`" 
-                        alt="dinamicAvatar">
+                        alt="dinamicAvatar"
+                        >
                         <div>
+                            <!-- dinamic kept name -->
                             <span class="profile-name ms-2"> 
                                 {{ contacts[dinamicIndex].name }} 
                             </span>
+                            <!-- dinamic kept lastMessage's hour //
+                            TO DO "TYPING STATE DURING THE TEMPORIZED FUNCTION" -->
                             <div class="last-mex">
-                                ultimo accesso 
-                                {{ getTimeOfLastMessage(contacts[dinamicIndex]) }} 
+                                {{ lastAccess }}
+                                <!-- ultimo accesso 
+                                {{ getTimeOfLastMessage(contacts[dinamicIndex]) }}  -->
                             </div>
                         </div>
                         <div></div>
@@ -164,31 +180,43 @@
                         <i class="profile-tool-icon fs-4 mx-2 bi bi bi-paperclip"></i>
                         <i class="profile-tool-icon fs-4 mx-2 bi bi-three-dots-vertical"></i>    
                     </div>
+                
                 </div>
-                <!-- interlocutor upper // Closure -->
+                <!-- ************ interlocutor upper // Closure ************* -->
 
-                <!-- Chat Area - central in Main -->
+                <!--********************  Chat Area - central in Main ******************* -->
                 <div id="chatArea" class="right-main d-flex align-items-end">
                     
                     <div class="chatContainer d-flex flex-column px-5">
-
+                        <!-- single cicled and targeted message's container //
+                        TO ADD ARROW WITH DROPDOWN FOR DELETTING THE MESSAGE -->
                         <div 
                         v-for="(element, index) in contacts[dinamicIndex].messages" 
                         :class="(element.status == 'received') ? 'white-msg align-self-start' : 'green-msg align-self-end'"
                         >
-                            <span> {{ element.message }} </span>
-                            <span class="msg-hour"> {{ getCurrentTime(element, dinamicIndex) }} </span>
+                            <!-- proper message -->
+                            <span> 
+                                {{ element.message }} 
+                            </span>
+                            <!-- proper message's hour -->
+                            <span class="msg-hour"> 
+                                {{ getCurrentTime(element, dinamicIndex) }} 
+                            
+                            </span>
                         </div>
-                        
+                        <!-- single cicled and targeted message's container // Closure -->
                     </div>
+                
                 </div>
-                <!-- Chat Area Central // Closure -->
+                <!-- ************** Chat Area Central // Closure *********************** -->
 
-                <!-- Type Area - Downer in Main -->
+                <!-- **************** Type Area - Downer in Main *********************** -->
                 <div id="type" class="d-flex justify-content-around align-items-center">
                     
                     <span class="type-icon fs-4 mx-2"><i class="bi bi-emoji-smile"></i></span>
-    
+                    
+                    <!-- inputText for typing your messages //
+                    @keypu.enter lets you do that pushing the enterKey -->
                     <input
                     v-model="inputMessage"
                     @keyup.enter="insertMessage()" 
@@ -196,20 +224,20 @@
                     type="text" 
                     placeholder="Scrivi un messaggio"
                     >
-
+                    <!-- TO ADD THE BUTTON FOR SENDING THE MESSAGE CLICKING -->
                     <span class="message-tool-icon fs-4 mx-2"><i class="bi bi-mic-fill"></i></span>
 
                 </div>
-                <!-- Type Area Downer // Closure -->
+                <!-- ************** Type Area Downer // Closure ************* -->
 
             </div>
-            <!-- ******* Main Chat // Closure ******* -->
+            <!-- ************** Main Chat // Closure ********************* -->
         
         </div>
-        <!-- **** WebApp container // Closure **** -->
+        <!-- ********************* WebApp container // Closure ******************* -->
     
     </div>
-    <!-- *************** #root div // Vue workfield // Closure ********************** -->
+    <!-- ***************** #root div // Vue workfield // Closure ************************* -->
 
     <!-- Day.js script -->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>

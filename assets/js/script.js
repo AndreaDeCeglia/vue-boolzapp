@@ -16,6 +16,7 @@ var app = new Vue (
            //dinamicClass: 'chat-container',
            inputMessage: '',
            nameSearch: '',
+           lastAccess: '',
            
 
            //inset dinamicIndex nella formula dell'astrazione dell'array messagges
@@ -195,7 +196,9 @@ var app = new Vue (
 
             selectChat: function(index, element){
                 console.log(`you're selecting this element`, index);
-                return this.dinamicIndex = index;
+                this.dinamicIndex = index;
+                this.lastAccess = getTimeOfLastMessage();
+                return this.lastAccess
             },
 
             getLastMessageData(element, index){
@@ -225,36 +228,46 @@ var app = new Vue (
                 return time;
             },
 
+
+
             insertMessage(){
 
-                
+                setTimeout(() => this.lastAccess = `ultimo accesso ${currentMoment}`, 3000);
+
                 let d = new Date();
                 let currentDate = d.toLocaleDateString();
                 let currentHour = dayjs().format('H:mm');
-                let currentMoment = currentDate + currentHour;
+                let currentMoment = currentDate + ' ' + currentHour;
 
+                
+                
                 if( this.inputMessage == ''){
-
                 } else {
                     let obj = {
                         date: currentMoment,
                         message: this.inputMessage,
                         status: 'sent'
                     }
+                    setTimeout(() => this.lastAccess = 'Online', 1000);
+                    setTimeout(() => this.lastAccess = 'Sta scrivendo...', 2000);
                     this.inputMessage = '';
-                    setTimeout( this.selfAnswer, 1000);
+                    setTimeout( this.selfAnswer, 3000);
+                    setTimeout(() => this.lastAccess = 'Online', 2500);
+                    setTimeout(() => this.lastAccess = `ultimo accesso ${currentMoment}`, 3000);
                     return this.contacts[this.dinamicIndex].messages.push(obj);
                 }
             },
 
 
             selfAnswer(){
-
                 
                 let d = new Date();
                 let currentDate = d.toLocaleDateString();
                 let currentHour = dayjs().format('H:mm');
                 let currentMoment = currentDate + currentHour;
+
+                this.lastAccess = "Online";
+                
                 let obj = {
                     date: currentMoment,
                     message: 'ok',
@@ -264,9 +277,12 @@ var app = new Vue (
             },
 
             filterName() {
+                
                 this.contacts.forEach((element, index) => {
 
-                    if(element.name.includes(this.nameSearch)){
+                    let minName = element.name.toLowerCase();
+
+                    if(minName.includes(this.nameSearch.toLowerCase())){
                         return element.visible = true;
                     }else{
                         return element.visible = false;
