@@ -107,7 +107,7 @@
 
                     <!-- single chat container self generated -->
                     <li
-                     
+                     v-if="element.visible"
                     v-for="(element, index) in contacts" 
                     class="list-group-item chat-container d-flex justify-content-between align-items-start"
                     @click="selectChat(index, element)">
@@ -211,6 +211,9 @@
     </div>
     <!-- *************** #root div // Vue workfield // Closure ********************** -->
 
+    <!-- Day.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
     <!-- vue@2 script -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
@@ -221,6 +224,10 @@
 
     <!-- my script.js script -->
     <script src="./assets/js/script.js"></script>
+
+    <script>
+        console.log( `this is a test of Day.js library`, dayjs().format('H:mm') );
+    </script>
     
 </body>
 </html>

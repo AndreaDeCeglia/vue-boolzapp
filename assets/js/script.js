@@ -16,6 +16,7 @@ var app = new Vue (
            //dinamicClass: 'chat-container',
            inputMessage: '',
            nameSearch: '',
+           
 
            //inset dinamicIndex nella formula dell'astrazione dell'array messagges
            //contacts[dinamicIndex].messagges => array
@@ -226,11 +227,17 @@ var app = new Vue (
 
             insertMessage(){
 
+                
+                let d = new Date();
+                let currentDate = d.toLocaleDateString();
+                let currentHour = dayjs().format('H:mm');
+                let currentMoment = currentDate + currentHour;
+
                 if( this.inputMessage == ''){
 
                 } else {
                     let obj = {
-                        date: '10/01/2020 15:51:00',
+                        date: currentMoment,
                         message: this.inputMessage,
                         status: 'sent'
                     }
@@ -242,8 +249,14 @@ var app = new Vue (
 
 
             selfAnswer(){
+
+                
+                let d = new Date();
+                let currentDate = d.toLocaleDateString();
+                let currentHour = dayjs().format('H:mm');
+                let currentMoment = currentDate + currentHour;
                 let obj = {
-                    date: '10/01/2020 15:51:00',
+                    date: currentMoment,
                     message: 'ok',
                     status: 'received'
                 }
@@ -253,7 +266,7 @@ var app = new Vue (
             filterName() {
                 this.contacts.forEach((element, index) => {
 
-                    if(this.contacts.name.includes(this.nameSearch)){
+                    if(element.name.includes(this.nameSearch)){
                         return element.visible = true;
                     }else{
                         return element.visible = false;
